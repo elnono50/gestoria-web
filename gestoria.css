@@ -1113,3 +1113,131 @@ textarea:focus-visible {
         top: 84px;
     }
 }
+
+/* Refinamiento visual seguro: mejoras sutiles sin cambiar la estructura */
+.header {
+    box-shadow: 0 4px 18px rgba(15, 0, 120, 0.04);
+}
+
+.navbar.navbar-scrolled {
+    box-shadow: 0 12px 28px rgba(15, 0, 120, 0.09);
+}
+
+.servicio-card,
+.beneficio,
+.contacto-form,
+.contacto-item,
+.stat {
+    background-clip: padding-box;
+}
+
+.servicio-card h3 {
+    min-height: 3.2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-wrap: balance;
+}
+
+.beneficio h3 {
+    min-height: 2.8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-wrap: balance;
+}
+
+.servicio-card li,
+.beneficio p,
+.contacto-item p,
+.footer-section p,
+.footer-section li,
+.footer-section a {
+    overflow-wrap: anywhere;
+}
+
+.contacto-form {
+    background: linear-gradient(180deg, rgba(15, 0, 120, 0.035), rgba(15, 0, 120, 0.01));
+}
+
+.footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-section a {
+    opacity: 0.94;
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        min-height: 72px;
+    }
+
+    .section-title {
+        margin-bottom: 2.4rem;
+    }
+
+    .servicios,
+    .sobre-mi,
+    .porque-elegirme,
+    .contacto {
+        padding: 84px 0;
+    }
+
+    .servicio-card,
+    .beneficio,
+    .contacto-form {
+        padding-left: 1.4rem;
+        padding-right: 1.4rem;
+    }
+
+    .consulta-rapida {
+        padding: 68px 0;
+    }
+
+    .footer {
+        padding-top: 52px;
+    }
+}
+
+@media (max-width: 576px) {
+    .container,
+    .nav-container,
+    .hero-container {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    .hero {
+        padding: 144px 0 92px;
+    }
+
+    .hero-buttons {
+        gap: 0.75rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .servicios-grid,
+    .beneficios-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contacto-item {
+        align-items: flex-start;
+        min-height: unset;
+    }
+
+    .contacto-item i {
+        width: 42px;
+        height: 42px;
+        font-size: 1.05rem;
+    }
+
+    .notificacion {
+        top: 84px;
+        right: 12px;
+    }
+}
