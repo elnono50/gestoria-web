@@ -1241,3 +1241,23 @@ textarea:focus-visible {
         right: 12px;
     }
 }
+/* ===== CORRECCIÓN ESPACIADO FORMULARIO ===== */
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 16px 18px;
+    border-radius: 14px;
+    border: 1px solid #d6d6e7;
+    font-size: 16px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+/* última entrada sin margen extra */
+.contact-form input:last-child,
+.contact-form select:last-child,
+.contact-form textarea:last-child {
+    margin-bottom: 0;
+}
