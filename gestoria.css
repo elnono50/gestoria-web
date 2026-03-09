@@ -669,7 +669,7 @@ textarea:focus-visible {
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
 }
 
 .form-group input,
@@ -1240,34 +1240,4 @@ textarea:focus-visible {
         top: 84px;
         right: 12px;
     }
-}
-/* ===================================== */
-/* CORRECCIÓN ESPACIADO FORMULARIO */
-/* ===================================== */
-
-.contact-form form {
-display: flex;
-flex-direction: column;
-}
-
-.contact-form input,
-.contact-form select,
-.contact-form textarea {
-
-width: 100%;
-padding: 16px 18px;
-border-radius: 14px;
-border: 1px solid #d6d6e7;
-font-size: 16px;
-margin-bottom: 20px;
-box-sizing: border-box;
-
-}
-
-.contact-form textarea {
-min-height: 120px;
-}
-
-.btn-enviar {
-margin-top: 10px;
 }
