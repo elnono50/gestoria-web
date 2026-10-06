@@ -11,6 +11,22 @@
 
         if (year) year.textContent = String(new Date().getFullYear());
 
+        /* ---------- Años de experiencia: suben solos cada 1 de septiembre ---------- */
+        const aniosDesde = (iso) => {
+            const [y, m, d] = iso.split('-').map(Number);
+            const hoy = new Date();
+            let anios = hoy.getFullYear() - y;
+            const mes = hoy.getMonth() + 1;
+            if (mes < m || (mes === m && hoy.getDate() < d)) anios -= 1;
+            return Math.max(anios, 0);
+        };
+
+        document.querySelectorAll('[data-years-since]').forEach((el) => {
+            const anios = aniosDesde(el.dataset.yearsSince);
+            el.textContent = String(anios);
+            if (el.dataset.target) el.dataset.target = String(anios);
+        });
+
         /* ---------- Header al hacer scroll ---------- */
         const updateHeader = () => header && header.classList.toggle('is-scrolled', window.scrollY > 24);
         updateHeader();
