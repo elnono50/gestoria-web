@@ -74,6 +74,15 @@
             });
         }
 
+        /* ---------- WhatsApp flotante: se oculta mientras el formulario está en pantalla ---------- */
+        const waFloat = document.querySelector('.wa-float');
+        const formBox = document.querySelector('.contacto-form');
+        if (waFloat && formBox && 'IntersectionObserver' in window) {
+            new IntersectionObserver(([entry]) => {
+                waFloat.classList.toggle('is-hidden', entry.isIntersecting);
+            }, { threshold: 0.15 }).observe(formBox);
+        }
+
         /* ---------- Contadores ---------- */
         const animateCounter = (el) => {
             const target = Number(el.dataset.target || 0);

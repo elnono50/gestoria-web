@@ -864,6 +864,10 @@ ul, ol { list-style: none; }
 }
 
 .wa-float:hover { transform: translateY(-2px); }
+.wa-float {
+    transition: transform .3s var(--ease), opacity .3s var(--ease), visibility .3s;
+}
+.wa-float.is-hidden { opacity: 0; visibility: hidden; transform: translateY(12px); }
 .wa-float svg { width: 24px; height: 24px; stroke-width: 1.8; }
 
 /* ---------- Animaciones ---------- */
