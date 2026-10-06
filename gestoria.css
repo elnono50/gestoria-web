@@ -2,6 +2,31 @@
    Gestoría Comatto — estilos
    ========================================================= */
 
+/* Fuentes alojadas en el propio sitio (sin dependencias de terceros) */
+@font-face {
+    font-family: 'Fraunces';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('fonts/fraunces.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Fraunces';
+    font-style: italic;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('fonts/fraunces-italic.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url('fonts/inter.woff2') format('woff2');
+}
+
 :root {
     --ink: #0e0b3d;
     --ink-2: #16125a;
@@ -51,6 +76,24 @@ body {
 }
 
 img { max-width: 100%; display: block; }
+
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+.skip-link {
+    position: absolute;
+    left: 16px;
+    top: -60px;
+    z-index: 3000;
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--gold);
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: none;
+    transition: top .2s var(--ease);
+}
+
+.skip-link:focus { top: 12px; }
 a { color: inherit; }
 ul, ol { list-style: none; }
 
@@ -171,23 +214,25 @@ ul, ol { list-style: none; }
     gap: 24px;
 }
 
-.logo { text-decoration: none; color: #fff; line-height: 1.15; }
+.logo { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; color: #fff; }
+.logo-seal { width: 46px; height: 46px; }
+.logo-text { line-height: 1.15; }
 
 .logo-name {
     display: block;
     font-family: var(--serif);
-    font-size: 1.35rem;
+    font-size: 1.3rem;
     font-weight: 500;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.005em;
 }
 
 .logo-role {
     display: block;
-    font-size: 0.66rem;
+    margin-top: 3px;
+    font-size: 0.64rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-top: 3px;
 }
 
 .nav-menu { display: flex; align-items: center; gap: 2rem; }
@@ -493,7 +538,7 @@ ul, ol { list-style: none; }
 }
 
 
-.sobre-mi-brand img { width: 108%; max-width: none; height: auto; }
+.sobre-mi-brand img { width: 88%; height: auto; }
 
 .subtitle {
     margin: 0.6rem 0 1.6rem;
@@ -702,6 +747,12 @@ ul, ol { list-style: none; }
 
 .field textarea { resize: vertical; min-height: 140px; }
 
+.field input:user-invalid,
+.field textarea:user-invalid {
+    border-color: #b8433a;
+    box-shadow: 0 0 0 4px rgba(184, 67, 58, 0.12);
+}
+
 .field--select select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235d5c6e' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
@@ -767,8 +818,9 @@ ul, ol { list-style: none; }
     padding-bottom: 48px;
 }
 
-.footer-brand .logo { display: inline-block; margin-bottom: 1.1rem; }
-.footer-brand .logo-name { font-size: 1.6rem; }
+.footer-brand .logo { margin-bottom: 1.2rem; }
+.footer-brand .logo-seal { width: 54px; height: 54px; }
+.footer-brand .logo-name { font-size: 1.5rem; }
 .footer-brand p { max-width: 34ch; }
 
 .footer h4 {
@@ -936,8 +988,10 @@ ul, ol { list-style: none; }
     .nav-container,
     .hero-container { padding-left: 20px; padding-right: 20px; }
 
-    .logo-name { font-size: 1.2rem; }
-    .logo-role { font-size: 0.6rem; }
+    .logo { gap: 10px; }
+    .logo-seal { width: 40px; height: 40px; }
+    .logo-name { font-size: 1.12rem; }
+    .logo-role { font-size: 0.56rem; letter-spacing: 0.16em; }
 
     .hero h1 { font-size: 2.45rem; }
     .hero-lead { font-size: 1.02rem; }
@@ -971,3 +1025,30 @@ ul, ol { list-style: none; }
 
     .notificacion { right: 12px; }
 }
+
+/* ---------- Página 404 ---------- */
+.page-404 {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 40px 20px;
+    color: #fff;
+    background:
+        radial-gradient(60% 70% at 50% 35%, rgba(73, 58, 190, 0.45) 0%, rgba(14, 11, 61, 0) 70%),
+        var(--ink);
+}
+
+.nf { max-width: 560px; text-align: center; }
+.nf-mark { width: 96px; height: 96px; margin: 0 auto 2rem; border-radius: 22px; }
+.nf .eyebrow::before { display: none; }
+
+.nf h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.2rem, 6vw, 3.4rem);
+    line-height: 1.1;
+    margin-bottom: 1rem;
+}
+
+.nf-lead { color: rgba(255, 255, 255, 0.75); margin-bottom: 2.2rem; }
+.nf-actions { justify-content: center; margin-bottom: 0; }

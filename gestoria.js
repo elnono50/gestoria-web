@@ -115,11 +115,27 @@
         };
 
         /* ---------- Formulario ---------- */
-        const validarEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        const validarEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) && email.length <= 120;
+        const cargadoEn = Date.now();
+        const ESPERA_MINIMA_MS = 3000;   // los bots completan en milisegundos
+        const ENFRIAMIENTO_MS = 30000;   // evita envíos repetidos seguidos
+        let ultimoEnvio = 0;
 
         if (form) {
             form.addEventListener('submit', async (event) => {
                 event.preventDefault();
+
+                // Anti-spam: campo trampa completado o envío demasiado rápido → se descarta en silencio
+                if (form.elements['_gotcha'].value || Date.now() - cargadoEn < ESPERA_MINIMA_MS) {
+                    mostrarNotificacion('¡Consulta enviada con éxito!', 'success');
+                    form.reset();
+                    return;
+                }
+
+                if (Date.now() - ultimoEnvio < ENFRIAMIENTO_MS) {
+                    mostrarNotificacion('Su consulta ya fue enviada. Aguarde unos segundos antes de enviar otra.', 'info');
+                    return;
+                }
 
                 const nombre = form.nombre.value.trim();
                 const email = form.email.value.trim();
@@ -128,6 +144,18 @@
 
                 if (!nombre || !email || !servicio || !mensaje) {
                     mostrarNotificacion('Por favor, complete todos los campos obligatorios.', 'error');
+                    return;
+                }
+
+                if (nombre.length > 100 || mensaje.length > 2000) {
+                    mostrarNotificacion('El texto ingresado es demasiado largo.', 'error');
+                    return;
+                }
+
+                const telefono = form.telefono.value.trim();
+                if (telefono && !/^[0-9+()\s-]{6,30}$/.test(telefono)) {
+                    mostrarNotificacion('Por favor, ingrese un teléfono válido.', 'error');
+                    form.telefono.focus();
                     return;
                 }
 
@@ -153,6 +181,7 @@
 
                     mostrarNotificacion(`¡Consulta enviada con éxito! Diego E. Comatto le responderá pronto a su email: ${email}`, 'success');
                     form.reset();
+                    ultimoEnvio = Date.now();
                 } catch (error) {
                     console.error('Error en el formulario:', error);
                     mostrarNotificacion('Hubo un error al enviar el mensaje. Puede escribir directamente por WhatsApp: +54 9 11 6658-2361 o email: comattodiegogestor@gmail.com', 'error');
